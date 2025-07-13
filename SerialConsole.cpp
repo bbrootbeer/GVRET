@@ -27,8 +27,10 @@
  */
 
 #include "SerialConsole.h"
-#include <due_wire.h>
-#include <Wire_EEPROM.h>
+// #include <due_wire.h>
+#include <Wire.h>
+// #include <Wire_EEPROM.h>
+#include <EEPROM.h>
 #include <due_can.h>
 #include <MCP2515.h>
 #include "config.h"

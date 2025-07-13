@@ -27,8 +27,10 @@
 #include "Logger.h"
 #include "config.h"
 #include "sys_io.h"
-#include <due_wire.h>
-#include <Wire_EEPROM.h>
+// #include <due_wire.h>
+#include <Wire.h>
+// #include <Wire_EEPROM.h>
+#include <EEPROM.h>
 #include <SdFat.h>
 
 

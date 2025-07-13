@@ -33,7 +33,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-#include "due_can.h"
+// #include "due_can.h"
+#include "FlexCAN_T4.h"
 
 struct FILTER {  //should be 10 bytes
     uint32_t id;
