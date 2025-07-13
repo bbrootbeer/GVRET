@@ -34,7 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <Wire.h>
 // #include <Wire_EEPROM.h>
 #include <EEPROM.h>
-#include <can_common.h>
+// #include <can_common.h>
 // #include <due_can.h>
 #include <FlexCAN_T4.h>
 #include <MCP2515.h>
@@ -428,7 +428,7 @@ void toggleRXLED()
     setLED(SysSettings.LED_CANRX, SysSettings.rxToggle);
 }
 
-void sendFrameToUSB(CAN_FRAME &frame, int whichBus)
+void sendFrameToUSB(CAN_message_t &frame, int whichBus)
 {
     uint8_t buff[22];
     uint8_t temp;
@@ -494,7 +494,7 @@ void sendFrameToUSB(CAN_FRAME &frame, int whichBus)
     }
 }
 
-void sendFrameToFile(CAN_FRAME &frame, int whichBus)
+void sendFrameToFile(CAN_message_t &frame, int whichBus)
 {
     uint8_t buff[40];
     uint8_t temp;
@@ -542,7 +542,7 @@ void sendFrameToFile(CAN_FRAME &frame, int whichBus)
     }
 }
 
-void processDigToggleFrame(CAN_FRAME &frame)
+void processDigToggleFrame(CAN_message_t &frame)
 {
     bool gotFrame = false;
     if (digToggleSettings.rxTxID == frame.id) {
@@ -567,7 +567,7 @@ void processDigToggleFrame(CAN_FRAME &frame)
 
 void sendDigToggleMsg()
 {
-    CAN_FRAME frame;
+    CAN_message_t frame;
     frame.id = digToggleSettings.rxTxID;
     if (frame.id > 0x7FF) frame.extended = true;
     else frame.extended = false;
@@ -592,8 +592,8 @@ fastest and safest with limited function calls
 void loop()
 {
     static int loops = 0;
-    CAN_FRAME incoming;
-    static CAN_FRAME build_out_frame;
+    CAN_message_t incoming;
+    static CAN_message_t build_out_frame;
     static int out_bus;
     int in_byte;
     static byte buff[20];
